@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useSession, signOut } from 'next-auth/react';
-import { NotificationPanel } from '../Notifications/NotificationPanel';
-import { usePlan } from '../Permissions/PlanProvider';
-import { useTheme } from '../ui/ThemeProvider';
+import { NotificationPanel } from './Notifications/NotificationPanel';
+import { usePlan } from './Permissions/PlanProvider';
+import { useTheme } from './ui/ThemeProvider';
 import { Sun, Moon, LogOut, User, Settings, Trophy, ChevronDown } from 'lucide-react';
 
 export default function Navbar() {
