@@ -1,10 +1,11 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { useState } from 'react';
 import { Package, Search, Copy, Check, Filter, Tag } from 'lucide-react';
 import { CEST_DATABASE, CEST_SEGMENTOS, getSegmento } from '../../lib/data/cestDatabase';
 
-export default function CESTConsultaPage() {
+function CESTConsultaPageContent() {
     const [query, setQuery] = useState('');
     const [segmentoFilter, setSegmentoFilter] = useState('');
     const [selectedCEST, setSelectedCEST] = useState(null);
@@ -81,8 +82,8 @@ export default function CESTConsultaPage() {
                                         key={seg.id}
                                         onClick={() => setSegmentoFilter(segmentoFilter === seg.id ? '' : seg.id)}
                                         className={`px-2.5 py-1 text-xs rounded-lg transition-colors flex items-center gap-1.5 ${segmentoFilter === seg.id
-                                                ? 'text-white shadow-sm'
-                                                : 'bg-muted hover:bg-muted/80 text-foreground'
+                                            ? 'text-white shadow-sm'
+                                            : 'bg-muted hover:bg-muted/80 text-foreground'
                                             }`}
                                         style={segmentoFilter === seg.id ? { backgroundColor: seg.cor } : {}}
                                     >
@@ -223,5 +224,13 @@ export default function CESTConsultaPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function CESTConsultaPage() {
+    return (
+        <AuthGate>
+            <CESTConsultaPageContent />
+        </AuthGate>
     );
 }

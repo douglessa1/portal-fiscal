@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock } from '../../components/Permissions/FeatureLock';
 import { useState } from 'react';
@@ -107,7 +108,7 @@ function validateNFe(nfeData) {
     return validations;
 }
 
-export default function NFeValidatorPage() {
+function NFeValidatorPageContent() {
     const [xmlContent, setXmlContent] = useState('');
     const [nfeData, setNfeData] = useState(null);
     const [validations, setValidations] = useState([]);
@@ -233,8 +234,8 @@ export default function NFeValidatorPage() {
                                     <div className="divide-y divide-border/50">
                                         {validations.map((v, idx) => (
                                             <div key={idx} className={`flex items-start gap-3 p-3 ${v.status === 'error' ? 'bg-red-50/50 dark:bg-red-900/10'
-                                                    : v.status === 'warning' ? 'bg-amber-50/50 dark:bg-amber-900/10'
-                                                        : ''
+                                                : v.status === 'warning' ? 'bg-amber-50/50 dark:bg-amber-900/10'
+                                                    : ''
                                                 }`}>
                                                 <StatusIcon status={v.status} />
                                                 <div className="flex-1">
@@ -289,5 +290,13 @@ export default function NFeValidatorPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function NFeValidatorPage() {
+    return (
+        <AuthGate>
+            <NFeValidatorPageContent />
+        </AuthGate>
     );
 }

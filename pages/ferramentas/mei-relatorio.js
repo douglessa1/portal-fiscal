@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock, UpgradePrompt } from '../../components/Permissions/FeatureLock';
 import { useState, useEffect } from 'react';
@@ -12,7 +13,7 @@ const VALORES_DAS = {
     misto: { inss: 71.60, icms: 1.00, iss: 5.00, total: 77.60 }
 };
 
-export default function MEIRelatorioPage() {
+function MEIRelatorioPageContent() {
     const [ano, setAno] = useState(new Date().getFullYear());
     const [atividade, setAtividade] = useState('comercio');
     const [meses, setMeses] = useState({});
@@ -93,8 +94,8 @@ export default function MEIRelatorioPage() {
                                 {Object.keys(VALORES_DAS).map(tipo => (
                                     <button key={tipo} onClick={() => setAtividade(tipo)}
                                         className={`p-3 rounded-lg border text-sm font-medium transition-colors ${atividade === tipo
-                                                ? 'border-primary bg-primary/10 text-primary'
-                                                : 'border-border hover:bg-muted'
+                                            ? 'border-primary bg-primary/10 text-primary'
+                                            : 'border-border hover:bg-muted'
                                             }`}>
                                         {tipo.charAt(0).toUpperCase() + tipo.slice(1)}
                                         <div className="text-xs mt-1 opacity-75">{fmt(VALORES_DAS[tipo].total)}</div>
@@ -124,8 +125,8 @@ export default function MEIRelatorioPage() {
                                     return (
                                         <button key={idx} onClick={() => toggleMes(idx)}
                                             className={`p-4 rounded-lg border transition-all ${pago
-                                                    ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
-                                                    : 'border-border hover:border-primary/50'
+                                                ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
+                                                : 'border-border hover:border-primary/50'
                                                 }`}>
                                             <div className="flex items-center justify-between mb-2">
                                                 <span className="font-medium text-foreground">{nome}</span>
@@ -208,5 +209,13 @@ export default function MEIRelatorioPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function MEIRelatorioPage() {
+    return (
+        <AuthGate>
+            <MEIRelatorioPageContent />
+        </AuthGate>
     );
 }

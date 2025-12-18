@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock, UpgradePrompt } from '../../components/Permissions/FeatureLock';
 import { useState, useEffect } from 'react';
@@ -11,7 +12,7 @@ const MOCK_NFES = [
     { chave: '35241166666666000166550010000001011234567890', numero: '101', serie: '1', emitente: 'Indústria D LTDA', valor: 45000, status: 'cancelada', data: '2024-12-14' },
 ];
 
-export default function MonitorNFePage() {
+function MonitorNFePageContent() {
     const [nfes, setNfes] = useState(MOCK_NFES);
     const [loading, setLoading] = useState(false);
     const [lastUpdate, setLastUpdate] = useState(new Date());
@@ -200,5 +201,13 @@ export default function MonitorNFePage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function MonitorNFePage() {
+    return (
+        <AuthGate>
+            <MonitorNFePageContent />
+        </AuthGate>
     );
 }

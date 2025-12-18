@@ -1,11 +1,12 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock } from '../../components/Permissions/FeatureLock';
 import { useState } from 'react';
 import { ShieldCheck, Upload, Download, FileText, AlertTriangle, CheckCircle, XCircle, AlertCircle, Lock } from 'lucide-react';
 import { parseSpedFile, generateValidationReport, formatCNPJ, formatSpedDate } from '../../lib/spedParser';
 
-export default function AuditorSpedPage() {
+function AuditorSpedPageContent() {
     const [fileContent, setFileContent] = useState('');
     const [fileName, setFileName] = useState('');
     const [report, setReport] = useState(null);
@@ -94,8 +95,8 @@ export default function AuditorSpedPage() {
                             <div className="space-y-4">
                                 {/* Status */}
                                 <div className={`p-4 rounded-xl border ${report.resumo.status === 'VÁLIDO'
-                                        ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800'
-                                        : 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800'
+                                    ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800'
+                                    : 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800'
                                     }`}>
                                     <div className="flex items-center gap-3">
                                         <StatusIcon status={report.resumo.status} />
@@ -278,5 +279,13 @@ export default function AuditorSpedPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function AuditorSpedPage() {
+    return (
+        <AuthGate>
+            <AuditorSpedPageContent />
+        </AuthGate>
     );
 }
