@@ -28,12 +28,14 @@ export default async function handler(req, res) {
         const passwordHash = await bcrypt.hash(password, salt);
 
         // Inserir novo usuário
-        // Se for o primeiro usuário do sistema, tornar Admin automaticamente? 
-        // Vamos fazer isso: Checar se a tabela users está vazia
+        // Determinar role: primeiro admin APENAS se explicitamente permitido
         const countUsers = await db.query('SELECT count(*) as count FROM users');
         const isFirstUser = countUsers.rows[0].count === 0 || countUsers.rows[0].count === '0';
 
-        const role = isFirstUser ? 'admin' : 'user';
+        // SEGURANÇA: Primeiro usuário só vira admin se ALLOW_FIRST_ADMIN=true
+        // Em produção, essa variável deve estar DESLIGADA por padrão
+        const allowFirstAdmin = process.env.ALLOW_FIRST_ADMIN === 'true';
+        const role = (isFirstUser && allowFirstAdmin) ? 'admin' : 'user';
 
         // Inserção compatível com PG e SQLite
         // SQLite não retorna RETURNING id por padrão em todas as versões/drivers no knex raw facilmente

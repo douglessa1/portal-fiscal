@@ -25,21 +25,26 @@ export default async function handler(req, res) {
             [email]
         );
 
-        // Se não houver DB configurado, usar mock para desenvolvimento
-        if (result.rows.length === 0 && !process.env.DATABASE_URL) {
-            if (email === 'teste@local' && password === 'senha123') {
+        // Mock de desenvolvimento: APENAS se explicitamente habilitado via env
+        if (process.env.NODE_ENV === 'development' && process.env.ENABLE_MOCK_AUTH === 'true') {
+            if (!process.env.DATABASE_URL && result.rows.length === 0) {
+                // Em dev sem DB, gerar sessão mock (sem credenciais fixas no código)
                 const token = jwt.sign(
-                    { sub: 'mock-user-id', email },
+                    { sub: 'dev-user-id', email },
                     process.env.JWT_SECRET || 'dev_secret_key',
-                    { expiresIn: '7d' }
+                    { expiresIn: '1h' }
                 );
                 return res.json({
                     success: true,
                     token,
-                    user: { email, name: 'Usuário Teste' }
+                    user: { email, name: 'Dev User', role: 'user' }
                 });
             }
-            return res.status(401).json({ error: 'Credenciais inválidas' });
+        }
+
+        // Em produção sem DB, bloquear acesso
+        if (!process.env.DATABASE_URL) {
+            return res.status(503).json({ error: 'Sistema em manutenção' });
         }
 
         const user = result.rows[0];
