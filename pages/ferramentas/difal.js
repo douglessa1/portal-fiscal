@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import MemoryOfCalculation from '../../components/DIFAL/MemoryOfCalculation';
 import ComparisonBlock from '../../components/DIFAL/ComparisonBlock';
@@ -8,7 +9,7 @@ import { useState, useEffect } from 'react';
 import { ArrowRightLeft, Upload, FileText, Calculator, Copy, Download, History, Eye, Lock, Share2 } from 'lucide-react';
 import { calculateDIFALWithMemory, compareDIFALMethods } from '../../lib/difalHash';
 
-export default function DIFALPage() {
+function DIFALPageContent() {
     const [formData, setFormData] = useState({
         valor: '', ufOrigem: '', ufDestino: '',
         aliqInter: '', aliqInterna: '', aliqFCP: '0',
@@ -404,5 +405,13 @@ export default function DIFALPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function DIFALPage() {
+    return (
+        <AuthGate>
+            <DIFALPageContent />
+        </AuthGate>
     );
 }

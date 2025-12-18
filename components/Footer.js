@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Footer() {
   return (
     <footer className="mt-12 border-t border-border py-8 bg-background">
@@ -5,9 +7,9 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <div>© {new Date().getFullYear()} Portal Fiscal — Todos os direitos reservados.</div>
           <div className="flex gap-4">
-            <a href="#" className="hover:text-primary transition-colors">Privacidade</a>
-            <a href="#" className="hover:text-primary transition-colors">Termos</a>
-            <a href="#" className="hover:text-primary transition-colors">Contato</a>
+            <Link href="/privacidade" className="hover:text-primary transition-colors">Privacidade</Link>
+            <Link href="/termos" className="hover:text-primary transition-colors">Termos</Link>
+            <Link href="/contato" className="hover:text-primary transition-colors">Contato</Link>
           </div>
         </div>
       </div>

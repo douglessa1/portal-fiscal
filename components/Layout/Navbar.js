@@ -4,18 +4,28 @@ import { useSession, signOut } from 'next-auth/react';
 import { NotificationPanel } from '../Notifications/NotificationPanel';
 import { usePlan } from '../Permissions/PlanProvider';
 import { useTheme } from '../ui/ThemeProvider';
-import { Sun, Moon, LogOut, User, Settings, Trophy, ChevronDown } from 'lucide-react';
+import { Sun, Moon, LogOut, User, Settings, Trophy, ChevronDown, Menu, X } from 'lucide-react';
 
 export default function Navbar() {
     const { data: session } = useSession();
     const { planInfo } = usePlan();
     const { theme, toggleTheme } = useTheme();
     const [userMenuOpen, setUserMenuOpen] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
         <header className="bg-background border-b border-border fixed top-0 left-0 right-0 z-40 backdrop-blur-sm bg-background/95">
             <div className="flex items-center justify-between h-[70px] px-6">
                 <div className="flex items-center gap-4">
+                    {/* Mobile Menu Toggle */}
+                    <button
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+                        aria-label="Toggle menu"
+                    >
+                        {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                    </button>
+
                     <Link href="/" className="flex items-center gap-2 text-primary font-bold text-lg">
                         <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-primary-foreground font-bold text-sm">
                             PF
@@ -95,13 +105,56 @@ export default function Navbar() {
                             <Link href="/auth/login" className="text-sm text-muted-foreground hover:text-foreground transition-colors px-3 py-2">
                                 Entrar
                             </Link>
-                            <Link href="/auth/register" className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors">
+                            <Link href="/auth/register" className="px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-all shadow-md hover:shadow-lg">
                                 Criar conta
                             </Link>
                         </>
                     )}
                 </div>
             </div>
+
+            {/* Mobile Menu */}
+            {mobileMenuOpen && (
+                <div className="md:hidden absolute top-[70px] left-0 right-0 bg-background border-b border-border shadow-lg z-30">
+                    <nav className="flex flex-col p-4 gap-1">
+                        <Link
+                            href="/ferramentas"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="py-3 px-4 hover:bg-muted rounded-lg transition-colors"
+                        >
+                            Ferramentas
+                        </Link>
+                        <Link
+                            href="/news"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="py-3 px-4 hover:bg-muted rounded-lg transition-colors"
+                        >
+                            Notícias
+                        </Link>
+                        <Link
+                            href="/comunidade"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="py-3 px-4 hover:bg-muted rounded-lg transition-colors"
+                        >
+                            Comunidade
+                        </Link>
+                        <Link
+                            href="/planos"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="py-3 px-4 hover:bg-muted rounded-lg transition-colors"
+                        >
+                            Planos
+                        </Link>
+                        <Link
+                            href="/api-docs"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="py-3 px-4 hover:bg-muted rounded-lg transition-colors"
+                        >
+                            API
+                        </Link>
+                    </nav>
+                </div>
+            )}
         </header>
     );
 }

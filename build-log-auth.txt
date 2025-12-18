@@ -1,0 +1,37 @@
+﻿
+> portal-fiscal-mvp@1.0.0 build
+> next build
+
+   Linting and checking validity of types ...
+   Creating an optimized production build ...
+ Ô£ô Compiled successfully
+   Collecting page data ...
+node.exe : 
+No linha:1 caractere:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo      
+        : NotSpecified: 
+(:St    ring) [], 
+RemoteExcept    ion
+    + 
+FullyQualifiedErrorI    
+d : NativeCommandError
+ 
+> Build optimization 
+failed: found page 
+without a React 
+Component as default 
+export in 
+pages/ferramentas/difal
+
+See https://nextjs.org/d
+ocs/messages/page-withou
+t-valid-component for 
+more info.
+
