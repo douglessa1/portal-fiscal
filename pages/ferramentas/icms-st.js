@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import ICMSSTMemory from '../../components/ICMSST/ICMSSTMemory';
 import ICMSSTComparison from '../../components/ICMSST/ICMSSTComparison';
@@ -7,7 +8,7 @@ import { useState, useEffect } from 'react';
 import { Scale, Upload, FileText, Calculator, Copy, Download, History, Lock, Share2 } from 'lucide-react';
 import { calculateICMSSTWithMemory, compareICMSSTMethods, calcularMVAAjustada } from '../../lib/icmsSTHash';
 
-export default function ICMSSTPage() {
+function ICMSSTPageContent() {
     const [formData, setFormData] = useState({
         valorProduto: '', ipi: '0', frete: '0', seguro: '0',
         outrasDespesas: '0', desconto: '0', mvaOriginal: '', mva: '',
@@ -327,5 +328,13 @@ export default function ICMSSTPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function ICMSSTPage() {
+    return (
+        <AuthGate>
+            <ICMSSTPageContent />
+        </AuthGate>
     );
 }

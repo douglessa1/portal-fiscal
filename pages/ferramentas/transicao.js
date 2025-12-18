@@ -1,11 +1,12 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock, UpgradePrompt } from '../../components/Permissions/FeatureLock';
 import { useState, useEffect } from 'react';
 import { Calendar, Calculator, Copy, Download, History, Lock } from 'lucide-react';
 import { calculateTransicaoWithMemory, CRONOGRAMA } from '../../lib/transicaoHash';
 
-export default function TransicaoPage() {
+function TransicaoPageContent() {
     const [formData, setFormData] = useState({
         valorOperacao: '', ano: 2026, tipoOperacao: 'mercadoria'
     });
@@ -218,5 +219,13 @@ export default function TransicaoPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function TransicaoPage() {
+    return (
+        <AuthGate>
+            <TransicaoPageContent />
+        </AuthGate>
     );
 }

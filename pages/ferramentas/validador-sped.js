@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock, UpgradePrompt } from '../../components/Permissions/FeatureLock';
 import { useState } from 'react';
@@ -18,7 +19,7 @@ function generateValidationHash(filename) {
     return `VALID-${hash.padStart(12, '0')}`;
 }
 
-export default function ValidadorSpedPage() {
+function ValidadorSpedPageContent() {
     const [file, setFile] = useState(null);
     const [status, setStatus] = useState('idle');
     const [progress, setProgress] = useState(0);
@@ -237,5 +238,13 @@ export default function ValidadorSpedPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function ValidadorSpedPage() {
+    return (
+        <AuthGate>
+            <ValidadorSpedPageContent />
+        </AuthGate>
     );
 }

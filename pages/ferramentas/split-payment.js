@@ -1,11 +1,12 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock, UpgradePrompt } from '../../components/Permissions/FeatureLock';
 import { useState, useEffect } from 'react';
 import { Split, Calculator, Copy, Download, History, Lock } from 'lucide-react';
 import { calculateSplitPaymentWithMemory, compareFluxoCaixa, ALIQUOTAS_SPLIT } from '../../lib/splitPaymentHash';
 
-export default function SplitPaymentPage() {
+function SplitPaymentPageContent() {
     const [formData, setFormData] = useState({
         valorOperacao: '',
         aliqCBS: ALIQUOTAS_SPLIT.CBS.toString(),
@@ -244,5 +245,13 @@ export default function SplitPaymentPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function SplitPaymentPage() {
+    return (
+        <AuthGate>
+            <SplitPaymentPageContent />
+        </AuthGate>
     );
 }

@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { useState } from 'react';
 import { Search, ArrowRight, Copy, Scale, Check } from 'lucide-react';
@@ -130,7 +131,7 @@ const CFOP_DATABASE = [
     { codigo: '7949', descricao: 'Outra saída de mercadoria ou prestação de serviço não especificada', tipo: 'Saída', uf: 'Exterior', natureza: 'Exportação' },
 ];
 
-export default function CFOPConsultaPage() {
+function CFOPConsultaPageContent() {
     const [query, setQuery] = useState('');
     const [tipoFilter, setTipoFilter] = useState('');
     const [ufFilter, setUfFilter] = useState('');
@@ -308,5 +309,13 @@ export default function CFOPConsultaPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function CFOPConsultaPage() {
+    return (
+        <AuthGate>
+            <CFOPConsultaPageContent />
+        </AuthGate>
     );
 }

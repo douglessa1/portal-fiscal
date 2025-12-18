@@ -1,10 +1,11 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { useState } from 'react';
 import { Package, Search, Copy, Check, Filter, Download, AlertTriangle, Scale } from 'lucide-react';
 import { NCM_DATABASE, NCM_CATEGORIAS, CST_PIS_COFINS } from '../../lib/data/ncmDatabase';
 
-export default function NCMConsultaPage() {
+function NCMConsultaPageContent() {
     const [query, setQuery] = useState('');
     const [capituloFilter, setCapituloFilter] = useState('');
     const [categoriaFilter, setCategoriaFilter] = useState('');
@@ -99,8 +100,8 @@ export default function NCMConsultaPage() {
                                         key={cap}
                                         onClick={() => setCapituloFilter(capituloFilter === cap ? '' : cap)}
                                         className={`px-2 py-1 text-xs rounded transition-colors ${capituloFilter === cap
-                                                ? 'bg-primary text-primary-foreground'
-                                                : 'bg-muted hover:bg-muted/80'
+                                            ? 'bg-primary text-primary-foreground'
+                                            : 'bg-muted hover:bg-muted/80'
                                             }`}
                                     >
                                         Cap. {cap}
@@ -157,8 +158,8 @@ export default function NCMConsultaPage() {
                                                             {ncm.categoria}
                                                         </span>
                                                         <span className={`text-[10px] px-1.5 py-0.5 rounded ${ncm.ipi > 0
-                                                                ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300'
-                                                                : 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300'
+                                                            ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300'
+                                                            : 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300'
                                                             }`}>
                                                             IPI {ncm.ipi}%
                                                         </span>
@@ -282,5 +283,13 @@ export default function NCMConsultaPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function NCMConsultaPage() {
+    return (
+        <AuthGate>
+            <NCMConsultaPageContent />
+        </AuthGate>
     );
 }

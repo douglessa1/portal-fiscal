@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import ToolLayout from '../../components/Layout/ToolLayout';
@@ -7,7 +8,7 @@ import { Button } from '../../components/ui/Button';
 import { FormGroup, Label, Input } from '../../components/ui/Form';
 import Alert, { AlertDescription } from '../../components/ui/Alert';
 
-export default function GeradorGuiasPage() {
+function GeradorGuiasPageContent() {
     const router = useRouter();
     const { valor, vencimento, uf, codigo } = router.query;
 
@@ -310,5 +311,13 @@ export default function GeradorGuiasPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function GeradorGuiasPage() {
+    return (
+        <AuthGate>
+            <GeradorGuiasPageContent />
+        </AuthGate>
     );
 }

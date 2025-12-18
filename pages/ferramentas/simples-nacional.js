@@ -1,11 +1,12 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock, UpgradePrompt } from '../../components/Permissions/FeatureLock';
 import { useState, useEffect } from 'react';
 import { Building2, Calculator, Copy, Download, History, Lock } from 'lucide-react';
 import { calculateSimplesWithMemory, ANEXOS } from '../../lib/simplesHash';
 
-export default function SimplesNacionalPage() {
+function SimplesNacionalPageContent() {
     const [formData, setFormData] = useState({
         rbt12: '', receita: '', anexo: 'I', fatorR: ''
     });
@@ -258,5 +259,13 @@ export default function SimplesNacionalPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function SimplesNacionalPage() {
+    return (
+        <AuthGate>
+            <SimplesNacionalPageContent />
+        </AuthGate>
     );
 }

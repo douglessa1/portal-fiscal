@@ -1,11 +1,12 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock, UpgradePrompt } from '../../components/Permissions/FeatureLock';
 import { useState, useEffect } from 'react';
 import { ArrowRightLeft, Calculator, Copy, Download, History, Lock } from 'lucide-react';
 import { calculateIBSCBSWithMemory, compareAtualVsReforma, ALIQUOTAS_REFORMA, TRANSICAO } from '../../lib/ibsCbsHash';
 
-export default function IBSCBSPage() {
+function IBSCBSPageContent() {
     const [formData, setFormData] = useState({
         valor: '', tipoOperacao: 'venda',
         aliqIBS: ALIQUOTAS_REFORMA.IBS.toString(),
@@ -250,5 +251,13 @@ export default function IBSCBSPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function IBSCBSPage() {
+    return (
+        <AuthGate>
+            <IBSCBSPageContent />
+        </AuthGate>
     );
 }

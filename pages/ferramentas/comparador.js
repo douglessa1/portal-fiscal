@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { useState } from 'react';
 import { FormInput, FormSelect } from '../../components/ui/Form';
@@ -8,7 +9,7 @@ import { FormGroup, Label, Input, Textarea } from '../../components/ui/Form';
 import Alert, { AlertDescription, InfoBox } from '../../components/ui/Alert';
 import Link from 'next/link';
 
-export default function ComparadorPage() {
+function ComparadorPageContent() {
     const [formData, setFormData] = useState({
         valorOperacao: '10000',
         setor: 'comercio'
@@ -196,5 +197,13 @@ export default function ComparadorPage() {
                 </ul>
             </InfoBox>
         </ToolLayout>
+    );
+}
+
+export default function ComparadorPage() {
+    return (
+        <AuthGate>
+            <ComparadorPageContent />
+        </AuthGate>
     );
 }

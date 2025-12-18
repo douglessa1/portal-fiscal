@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import { useState } from 'react';
 import { FormInput, FormSelect } from '../../components/ui/Form';
 import ToolLayout from '../../components/Layout/ToolLayout';
@@ -7,7 +8,7 @@ import { Button } from '../../components/ui/Button';
 import { FormGroup, Label, Input, Textarea } from '../../components/ui/Form';
 import Alert, { AlertDescription, InfoBox } from '../../components/ui/Alert';
 
-export default function PartilhaPage() {
+function PartilhaPageContent() {
     const [formData, setFormData] = useState({
         valorOperacao: '',
         aliqOrigem: '',
@@ -174,5 +175,13 @@ export default function PartilhaPage() {
                 </ul>
             </InfoBox>
         </ToolLayout>
+    );
+}
+
+export default function PartilhaPage() {
+    return (
+        <AuthGate>
+            <PartilhaPageContent />
+        </AuthGate>
     );
 }

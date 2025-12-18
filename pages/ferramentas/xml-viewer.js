@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock } from '../../components/Permissions/FeatureLock';
 import { useState } from 'react';
@@ -62,7 +63,7 @@ function parseXMLToTree(xmlString) {
     }
 }
 
-export default function XMLViewerPage() {
+function XMLViewerPageContent() {
     const [xmlContent, setXmlContent] = useState('');
     const [xmlTree, setXmlTree] = useState(null);
     const [nfeData, setNfeData] = useState(null);
@@ -309,5 +310,13 @@ export default function XMLViewerPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function XMLViewerPage() {
+    return (
+        <AuthGate>
+            <XMLViewerPageContent />
+        </AuthGate>
     );
 }

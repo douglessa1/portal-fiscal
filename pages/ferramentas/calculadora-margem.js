@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import { useState, useEffect } from 'react';
 import { FormInput } from '../../components/ui/Form';
 import ToolLayout from '../../components/Layout/ToolLayout';
@@ -7,7 +8,7 @@ import { Button } from '../../components/ui/Button';
 import { FormGroup, Label, Input, Textarea } from '../../components/ui/Form';
 import Alert, { AlertDescription } from '../../components/ui/Alert';
 
-export default function CalculadoraMargemPage() {
+function CalculadoraMargemPageContent() {
     const [modo, setModo] = useState('formacao'); // 'formacao' (custo -> preço) ou 'reverso' (preço -> margem)
 
     const [valores, setValores] = useState({
@@ -262,5 +263,13 @@ export default function CalculadoraMargemPage() {
                 </Card>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function CalculadoraMargemPage() {
+    return (
+        <AuthGate>
+            <CalculadoraMargemPageContent />
+        </AuthGate>
     );
 }

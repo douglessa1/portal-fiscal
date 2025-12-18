@@ -1,11 +1,12 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock, UpgradePrompt } from '../../components/Permissions/FeatureLock';
 import { useState, useEffect } from 'react';
 import { Percent, Calculator, Copy, Download, History, Lock } from 'lucide-react';
 import { calculatePISCOFINSWithMemory, comparePISCOFINSRegimes, ALIQUOTAS } from '../../lib/pisCofinsHash';
 
-export default function PISCOFINSPage() {
+function PISCOFINSPageContent() {
     const [formData, setFormData] = useState({
         valor: '', regime: 'cumulativo', tipoReceita: 'venda',
         aliqPIS: '', aliqCOFINS: '', creditoPIS: '0', creditoCOFINS: '0'
@@ -316,5 +317,13 @@ export default function PISCOFINSPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function PISCOFINSPage() {
+    return (
+        <AuthGate>
+            <PISCOFINSPageContent />
+        </AuthGate>
     );
 }

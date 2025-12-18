@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock, UpgradePrompt } from '../../components/Permissions/FeatureLock';
 import { useState, useEffect } from 'react';
@@ -6,7 +7,7 @@ import { Wallet, Plus, Trash2, Download, Lock, History, Calendar, TrendingUp, Al
 
 const LIMITE_MEI = 81000;
 
-export default function MEIReceitasPage() {
+function MEIReceitasPageContent() {
     const [receitas, setReceitas] = useState([]);
     const [novaReceita, setNovaReceita] = useState({ data: '', descricao: '', valor: '' });
     const [ano, setAno] = useState(new Date().getFullYear());
@@ -213,5 +214,13 @@ export default function MEIReceitasPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function MEIReceitasPage() {
+    return (
+        <AuthGate>
+            <MEIReceitasPageContent />
+        </AuthGate>
     );
 }

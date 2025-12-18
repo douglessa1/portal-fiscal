@@ -1,11 +1,12 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock, UpgradePrompt } from '../../components/Permissions/FeatureLock';
 import { useState, useRef } from 'react';
 import { FileText, Upload, Download, Printer, Lock, Copy, AlertTriangle, CheckCircle, Files, Trash2, X } from 'lucide-react';
 import { parseNFeXML, formatCNPJ, formatCPF, formatCEP, formatChaveAcesso, formatDate, formatDateTime, getModalidadeFrete, getFormaPagamento } from '../../lib/nfeParser';
 
-export default function DanfeGeneratorPage() {
+function DanfeGeneratorPageContent() {
     const [xmlContent, setXmlContent] = useState('');
     const [nfeData, setNfeData] = useState(null);
     const [error, setError] = useState('');
@@ -236,8 +237,8 @@ export default function DanfeGeneratorPage() {
                                             <div
                                                 key={file.id}
                                                 className={`flex items-center justify-between p-3 rounded-lg ${file.status === 'success'
-                                                        ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800'
-                                                        : 'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800'
+                                                    ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800'
+                                                    : 'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800'
                                                     }`}
                                             >
                                                 <div className="flex items-center gap-3">
@@ -596,5 +597,13 @@ export default function DanfeGeneratorPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function DanfeGeneratorPage() {
+    return (
+        <AuthGate>
+            <DanfeGeneratorPageContent />
+        </AuthGate>
     );
 }

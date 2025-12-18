@@ -1,11 +1,12 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock, UpgradePrompt } from '../../components/Permissions/FeatureLock';
 import { useState, useEffect } from 'react';
 import { User, Calculator, Copy, Download, History, Lock } from 'lucide-react';
 import { calculateMEIDASWithMemory, ATIVIDADES } from '../../lib/meiDasHash';
 
-export default function MEIDASPage() {
+function MEIDASPageContent() {
     const [formData, setFormData] = useState({
         atividade: 'comercio',
         competencia: new Date().toISOString().slice(0, 7)
@@ -213,5 +214,13 @@ export default function MEIDASPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function MEIDASPage() {
+    return (
+        <AuthGate>
+            <MEIDASPageContent />
+        </AuthGate>
     );
 }
