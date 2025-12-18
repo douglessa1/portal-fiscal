@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Header from '../Header';
+import Navbar from './Navbar';
 import Footer from '../Footer';
 import Badge from '../ui/Badge';
 
@@ -21,7 +21,7 @@ export default function ToolLayout({
                 <meta name="description" content={description || 'Ferramentas fiscais profissionais'} />
             </Head>
 
-            <Header />
+            <Navbar />
 
             <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 {/* Page Header */}

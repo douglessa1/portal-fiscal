@@ -3,7 +3,7 @@ import React from 'react';
 export function Card({ children, className = '', title, ...props }) {
     if (title) {
         return (
-            <div className={`bg-card border border-border rounded-xl overflow-hidden ${className}`} {...props}>
+            <div className={`bg-card border border-border rounded-lg shadow-sm overflow-hidden ${className}`} {...props}>
                 <div className="border-b border-border px-6 py-4">
                     <h3 className="font-bold text-foreground">{title}</h3>
                 </div>
@@ -15,7 +15,7 @@ export function Card({ children, className = '', title, ...props }) {
     }
 
     return (
-        <div className={`bg-card border border-border rounded-xl p-6 ${className}`} {...props}>
+        <div className={`bg-card border border-border rounded-lg shadow-sm ${className}`} {...props}>
             {children}
         </div>
     );

@@ -9,28 +9,9 @@ export default async function handler(req, res) {
         } catch (error) {
             // Fallback se a tabela não existir
             console.error(error);
-            return res.status(200).json([
-                {
-                    id: 'mock-1',
-                    titulo: 'Reforma Tributária Aprovada: O que muda?',
-                    resumo: 'Entenda os principais pontos da PEC 45/2019 e como o IBS vai impactar sua empresa.',
-                    categoria: 'Destaque',
-                    autor: 'Portal Fiscal',
-                    imagem_url: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=1000',
-                    created_at: new Date().toISOString(),
-                    slug: 'reforma-tributaria-aprovada'
-                },
-                {
-                    id: 'mock-2',
-                    titulo: 'Tabela do Simples Nacional 2025',
-                    resumo: 'Novos limites e anexos atualizados para o próximo ano fiscal.',
-                    categoria: 'Simples Nacional',
-                    autor: 'Portal Fiscal',
-                    imagem_url: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&q=80&w=1000',
-                    created_at: new Date(Date.now() - 86400000).toISOString(),
-                    slug: 'tabela-simples-2025'
-                }
-            ]);
+            // Import dinâmico ou require para evitar erro de topo se db falhar
+            const { MOCK_NEWS } = require('../../../lib/newsData');
+            return res.status(200).json(MOCK_NEWS);
         }
     }
 

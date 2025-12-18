@@ -26,4 +26,24 @@ module.exports = {
   async headers() {
     return []
   },
+
+  async redirects() {
+    return [
+      {
+        source: '/blog',
+        destination: '/noticias',
+        permanent: true,
+      },
+      {
+        source: '/blog/:slug*',
+        destination: '/noticias/:slug*',
+        permanent: true,
+      },
+      {
+        source: '/news',
+        destination: '/noticias',
+        permanent: true,
+      },
+    ]
+  },
 }

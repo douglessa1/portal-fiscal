@@ -1,4 +1,4 @@
-import Header from '../components/Header';
+import Navbar from '../components/Layout/Navbar';
 import Sidebar from '../components/Layout/Sidebar';
 import Card from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
@@ -33,7 +33,7 @@ export default function Notifications() {
 
     return (
         <div className="min-h-screen bg-background text-foreground flex flex-col">
-            <Header />
+            <Navbar />
             <div className="flex flex-1">
                 <Sidebar />
                 <main className="flex-1 md:ml-64 p-6 lg:p-12 pt-[100px] w-full max-w-5xl mx-auto">

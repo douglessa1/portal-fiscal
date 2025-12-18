@@ -1,5 +1,5 @@
 export const dynamic = 'force-dynamic';
-import Header from '../../components/Header'
+import Navbar from '../../components/Layout/Navbar';
 import { useEffect, useState } from 'react'
 
 export default function Simulations() {
@@ -9,7 +9,7 @@ export default function Simulations() {
     }, [])
     return (
         <div>
-            <Header />
+            <Navbar />
             <main className="max-w-5xl mx-auto p-6">
                 <h1 className="text-xl font-bold">Histórico de Simulações</h1>
                 <table className="w-full mt-4 border-collapse">

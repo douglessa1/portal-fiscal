@@ -26,7 +26,7 @@ export default function Navbar() {
 
         <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
           <Link href="/ferramentas/difal" className="hover:text-foreground transition-colors">Ferramentas</Link>
-          <Link href="/news" className="hover:text-foreground transition-colors">Notícias</Link>
+          <Link href="/noticias" className="hover:text-foreground transition-colors">Notícias</Link>
           <Link href="/comunidade" className="hover:text-foreground transition-colors">Comunidade</Link>
           <Link href="/planos" className="hover:text-foreground transition-colors">Planos</Link>
           <Link href="/api-docs" className="hover:text-foreground transition-colors">API</Link>

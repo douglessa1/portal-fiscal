@@ -1,4 +1,4 @@
-import Header from '../components/Header'
+import Navbar from '../components/Layout/Navbar';
 import { useState } from 'react'
 
 export default function XmlReader() {
@@ -26,7 +26,7 @@ export default function XmlReader() {
 
     return (
         <div>
-            <Header />
+            <Navbar />
             <main className="max-w-4xl mx-auto p-6">
                 <h1 className="text-3xl font-bold text-primary mb-2">Leitor de NF-e XML</h1>
                 <p className="text-muted-foreground mb-6">Importe sua nota fiscal eletrônica em formato XML e visualize informações estruturadas.</p>

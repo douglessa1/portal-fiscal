@@ -14,6 +14,7 @@
     "db:reset": "del dev.sqlite3 && npm run db:migrate:latest && npm run dev"
   },
   "dependencies": {
+    "@fontsource/inter": "^5.2.8",
     "axios": "1.4.0",
     "bcryptjs": "^2.4.3",
     "chart.js": "4.4.0",

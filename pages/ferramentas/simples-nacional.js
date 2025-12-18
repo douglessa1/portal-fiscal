@@ -66,37 +66,37 @@ function SimplesNacionalPageContent() {
                 <div className="grid grid-cols-3 gap-6">
                     <div className="col-span-2 space-y-6">
                         {/* FORM */}
-                        <form onSubmit={handleCalculate} className="bg-card border border-border rounded-xl p-5 space-y-5">
+                        <form onSubmit={handleCalculate} className="bg-card border border-border rounded-lg shadow-sm p-6 space-y-6">
 
                             {/* Receita */}
                             <div>
                                 <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">Dados</h2>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div>
-                                        <label className="block text-xs font-medium text-foreground mb-1">Receita Bruta 12 meses (R$)</label>
+                                        <label className="block text-xs font-medium text-foreground mb-1.5">Receita Bruta 12 meses (R$)</label>
                                         <input type="number" name="rbt12" value={formData.rbt12} onChange={handleChange}
                                             placeholder="480000.00" step="0.01" required
-                                            className="w-full h-9 px-3 text-sm rounded-lg border border-input bg-background" />
+                                            className="w-full h-9 px-3 text-sm rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/20 transition-all" />
                                     </div>
                                     <div>
-                                        <label className="block text-xs font-medium text-foreground mb-1">Receita do Mês (R$)</label>
+                                        <label className="block text-xs font-medium text-foreground mb-1.5">Receita do Mês (R$)</label>
                                         <input type="number" name="receita" value={formData.receita} onChange={handleChange}
                                             placeholder="50000.00" step="0.01" required
-                                            className="w-full h-9 px-3 text-sm rounded-lg border border-input bg-background" />
+                                            className="w-full h-9 px-3 text-sm rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/20 transition-all" />
                                     </div>
                                 </div>
                             </div>
 
                             {/* Anexo */}
-                            <div className="pt-4 border-t border-border/50">
+                            <div className="pt-4 border-t border-border">
                                 <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">Anexo</h2>
                                 <div className="grid grid-cols-5 gap-2">
                                     {Object.entries(ANEXOS).map(([key, val]) => (
-                                        <label key={key} className={`flex flex-col items-center p-3 rounded-lg border cursor-pointer transition-colors ${formData.anexo === key ? 'border-primary bg-primary/5' : 'border-border hover:bg-muted/50'
+                                        <label key={key} className={`flex flex-col items-center p-3 rounded-md border cursor-pointer transition-all ${formData.anexo === key ? 'border-primary bg-primary/5 shadow-sm' : 'border-border hover:bg-muted/50'
                                             }`}>
                                             <input type="radio" name="anexo" value={key} checked={formData.anexo === key}
                                                 onChange={handleChange} className="sr-only" />
-                                            <span className="text-lg font-bold text-foreground">Anexo {key}</span>
+                                            <span className={`text-lg font-bold ${formData.anexo === key ? 'text-primary' : 'text-foreground'}`}>Anexo {key}</span>
                                             <span className="text-xs text-muted-foreground text-center">{val.nome.replace('Anexo ' + key + ' - ', '')}</span>
                                         </label>
                                     ))}
@@ -105,13 +105,13 @@ function SimplesNacionalPageContent() {
 
                             {/* Fator R */}
                             {formData.anexo === 'V' && (
-                                <div className="pt-4 border-t border-border/50">
+                                <div className="pt-4 border-t border-border">
                                     <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3">Fator R</h2>
                                     <div>
                                         <label className="block text-xs font-medium text-foreground mb-1">Fator R (Folha ÷ Receita)</label>
                                         <input type="number" name="fatorR" value={formData.fatorR} onChange={handleChange}
                                             placeholder="0.28" step="0.01" max="1"
-                                            className="w-full h-9 px-3 text-sm rounded-lg border border-input bg-background" />
+                                            className="w-full h-9 px-3 text-sm rounded-md border border-input bg-background focus:ring-2 focus:ring-primary/20" />
                                         <p className="text-xs text-muted-foreground mt-1">Se ≥ 28%, tributação pelo Anexo III</p>
                                     </div>
                                 </div>
@@ -120,7 +120,7 @@ function SimplesNacionalPageContent() {
                             {error && <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-sm text-red-700 dark:text-red-300">{error}</div>}
 
                             <button type="submit" disabled={loading}
-                                className="w-full h-11 text-sm font-semibold rounded-lg bg-green-600 text-white hover:bg-green-700 disabled:opacity-50 flex items-center justify-center gap-2">
+                                className="w-full h-9 text-sm font-medium rounded-md bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 flex items-center justify-center gap-2 shadow-sm transition-all">
                                 <Calculator className="w-4 h-4" />
                                 {loading ? 'Calculando...' : 'Calcular DAS'}
                             </button>

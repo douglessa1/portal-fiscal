@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import Header from '../../components/Header';
+import Navbar from '../../components/Layout/Navbar';
 import Sidebar from '../../components/Layout/Sidebar';
+import { MOCK_NEWS } from '../../lib/newsData';
 import Card from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 import { FormGroup, Label, Input, Textarea } from '../../components/ui/Form';
@@ -19,15 +20,13 @@ export default function LerNoticia() {
     useEffect(() => {
         if (!slug) return;
 
-        // Mock fetch logic - in production use API
-        fetch('/api/news') // In real implementation, filter by slug or use query params
-            .then(res => res.json())
-            .then(data => {
-                const found = data.find(item => item.slug === slug);
-                setArticle(found); // or fetch from dedicated endpoint
-                setLoading(false);
-            })
-            .catch(err => setLoading(false));
+        // Fetch from unified lib (Simulating API/DB)
+        const found = MOCK_NEWS.find(item => item.slug === slug);
+
+        if (found) {
+            setArticle(found);
+        }
+        setLoading(false);
     }, [slug]);
 
     if (loading) return (
@@ -50,7 +49,7 @@ export default function LerNoticia() {
                 <meta name="description" content={article.resumo} />
             </Head>
 
-            <Header />
+            <Navbar />
             <div className="flex flex-1">
                 <Sidebar />
                 <main className="flex-1 md:ml-64 p-6 lg:p-12 pt-[100px] w-full max-w-4xl mx-auto">

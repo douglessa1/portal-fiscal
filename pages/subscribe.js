@@ -1,4 +1,4 @@
-import Header from '../components/Header'
+import Navbar from '../components/Layout/Navbar';
 import { useState, useEffect } from 'react'
 import { CheckCircle } from 'lucide-react'
 
@@ -17,7 +17,7 @@ export default function Subscribe() {
 
     return (
         <div className="min-h-screen bg-background text-foreground">
-            <Header />
+            <Navbar />
             <main className="max-w-6xl mx-auto px-6 py-12">
                 <div className="text-center mb-12">
                     <h1 className="text-4xl font-bold mb-4">Escolha o plano ideal</h1>
@@ -31,8 +31,8 @@ export default function Subscribe() {
                         <p className="col-span-3 text-center">Carregando planos...</p>
                     ) : plans.map((plan) => (
                         <div key={plan.id} className={`relative p-8 rounded-2xl border ${plan.slug === 'pro'
-                                ? 'border-primary shadow-lg bg-card scale-105 z-10'
-                                : 'border-border bg-card/50 shadow-sm'
+                            ? 'border-primary shadow-lg bg-card scale-105 z-10'
+                            : 'border-border bg-card/50 shadow-sm'
                             }`}>
 
                             {plan.slug === 'pro' && (
@@ -57,8 +57,8 @@ export default function Subscribe() {
                             </ul>
 
                             <button className={`w-full py-3 rounded-lg font-bold transition-transform active:scale-95 ${plan.slug === 'pro' || plan.slug === 'enterprise'
-                                    ? 'bg-primary text-primary-foreground hover:bg-primary/90 shadow'
-                                    : 'bg-muted text-foreground hover:bg-muted/80'
+                                ? 'bg-primary text-primary-foreground hover:bg-primary/90 shadow'
+                                : 'bg-muted text-foreground hover:bg-muted/80'
                                 }`}>
                                 {plan.price > 0 ? 'Assinar Agora' : 'Começar Grátis'}
                             </button>
