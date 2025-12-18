@@ -68,7 +68,7 @@ export default function BlogIndex({ articles, categories }) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const articles = getAllArticles();
     const categories = getCategories();
 

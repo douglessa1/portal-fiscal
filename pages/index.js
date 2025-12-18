@@ -425,7 +425,7 @@ export default function Home({ recentArticles }) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const allArticles = getAllArticles();
     const recentArticles = allArticles.slice(0, 4);
 

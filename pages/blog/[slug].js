@@ -109,19 +109,7 @@ export default function BlogPost({ article }) {
     );
 }
 
-export async function getStaticPaths() {
-    const articles = getAllArticles();
-    const paths = articles.map(article => ({
-        params: { slug: article.slug }
-    }));
-
-    return {
-        paths,
-        fallback: false
-    };
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
     const article = getArticleBySlug(params.slug);
 
     return {
