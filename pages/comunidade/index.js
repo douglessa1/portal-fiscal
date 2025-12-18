@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import Header from '../../components/Header';
 import Sidebar from '../../components/Layout/Sidebar';
 import PostCard from '../../components/Community/PostCard';

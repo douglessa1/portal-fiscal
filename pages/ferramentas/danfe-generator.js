@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock, UpgradePrompt } from '../../components/Permissions/FeatureLock';
 import { useState, useRef } from 'react';

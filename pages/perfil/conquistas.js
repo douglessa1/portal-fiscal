@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';

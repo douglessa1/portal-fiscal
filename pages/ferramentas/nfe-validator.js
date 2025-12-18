@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock } from '../../components/Permissions/FeatureLock';
 import { useState } from 'react';

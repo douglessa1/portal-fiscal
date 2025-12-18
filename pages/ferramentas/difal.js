@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import MemoryOfCalculation from '../../components/DIFAL/MemoryOfCalculation';
 import ComparisonBlock from '../../components/DIFAL/ComparisonBlock';

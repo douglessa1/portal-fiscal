@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { useState } from 'react';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import Card from '../../components/ui/Card';

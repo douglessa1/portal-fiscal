@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import ICMSSTMemory from '../../components/ICMSST/ICMSSTMemory';
 import ICMSSTComparison from '../../components/ICMSST/ICMSSTComparison';

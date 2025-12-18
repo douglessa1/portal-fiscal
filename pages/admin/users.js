@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import AdminGuard from '../../components/Auth/AdminGuard';
 import DashboardLayout from '../../components/Layout/DashboardLayout';
 import Card from '../../components/ui/Card';

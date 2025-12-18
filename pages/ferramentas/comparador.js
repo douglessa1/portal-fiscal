@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { useState } from 'react';
 import { FormInput } from '../../components/ui/Form';
