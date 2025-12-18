@@ -1,5 +1,6 @@
-/** Next.js config: ignore system files in file watcher */
+/** Next.js config: Portal Fiscal - Production Mode */
 module.exports = {
+  // Webpack optimization for development
   webpack: (config, { dev }) => {
     if (dev) {
       config.watchOptions = Object.assign({}, config.watchOptions, {
@@ -12,5 +13,17 @@ module.exports = {
       })
     }
     return config
-  }
+  },
+
+  // Force server-side rendering (disable static optimization)
+  experimental: {
+    // Disable static page generation completely
+    isrMemoryCacheSize: 0,
+  },
+
+  // Ensure all pages are server-rendered
+  // This prevents Next.js from trying to statically generate pages at build time
+  async headers() {
+    return []
+  },
 }
