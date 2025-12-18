@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import StandaloneLayout from '../../components/Layout/StandaloneLayout';
@@ -12,6 +12,19 @@ export default function Register() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const router = useRouter();
+    const { callbackUrl } = router.query;
+
+    const [toolName, setToolName] = useState('');
+
+    // Efeito para extrair nome da ferramenta do callbackUrl (ex: /ferramentas/difal -> DIFAL)
+    useEffect(() => {
+        if (callbackUrl && typeof callbackUrl === 'string') {
+            const match = callbackUrl.split('/').pop();
+            if (match) {
+                setToolName(match.charAt(0).toUpperCase() + match.slice(1).replace('-', ' '));
+            }
+        }
+    }, [callbackUrl]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -36,8 +49,9 @@ export default function Register() {
                 throw new Error(data.message || 'Erro ao criar conta');
             }
 
-            // Success - redirect to login
-            router.push('/auth/login?registered=true');
+            // Success - redirect to login, preserving callbackUrl
+            const loginUrl = `/auth/login?registered=true${callbackUrl ? `&callbackUrl=${encodeURIComponent(callbackUrl)}` : ''}`;
+            router.push(loginUrl);
         } catch (err) {
             setError(err.message);
             setLoading(false);
@@ -54,7 +68,9 @@ export default function Register() {
                             PF
                         </div>
                         <h1 className="text-3xl font-bold text-foreground">Criar Conta</h1>
-                        <p className="text-muted-foreground mt-2">Junte-se à comunidade do Portal Fiscal</p>
+                        <p className="text-muted-foreground mt-2">
+                            {toolName ? `Para acessar o ${toolName}, crie sua conta gratuita.` : 'Junte-se à comunidade do Portal Fiscal'}
+                        </p>
                     </div>
 
                     {/* Error Alert */}
@@ -120,7 +136,10 @@ export default function Register() {
                     <div className="mt-6 text-center pt-6 border-t border-border">
                         <p className="text-sm text-muted-foreground">
                             Já tem uma conta?{' '}
-                            <Link href="/auth/login" className="text-primary font-semibold hover:underline">
+                            <Link
+                                href={`/auth/login${callbackUrl ? `?callbackUrl=${encodeURIComponent(callbackUrl)}` : ''}`}
+                                className="text-primary font-semibold hover:underline"
+                            >
                                 Fazer Login
                             </Link>
                         </p>

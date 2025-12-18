@@ -10,7 +10,8 @@
     "format": "prettier --write .",
     "db:migrate:make": "knex migrate:make -x js",
     "db:migrate:latest": "knex migrate:latest",
-    "db:migrate:rollback": "knex migrate:rollback"
+    "db:migrate:rollback": "knex migrate:rollback",
+    "db:reset": "del dev.sqlite3 && npm run db:migrate:latest && npm run dev"
   },
   "dependencies": {
     "axios": "1.4.0",

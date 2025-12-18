@@ -37,7 +37,9 @@ export default function Login() {
             setError('Email ou senha inválidos.');
             setLoading(false);
         } else {
-            router.push('/dashboard');
+            // Redirect inteligente: volta para a ferramenta ou vai para dashboard
+            const callbackUrl = router.query.callbackUrl || '/dashboard';
+            router.push(callbackUrl);
         }
     }
 
