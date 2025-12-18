@@ -5,7 +5,7 @@ import { FormInput, FormSelect } from '../../components/ui/Form';
 import Card from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 import { FormGroup, Label, Input, Textarea } from '../../components/ui/Form';
-import Alert, { AlertDescription } from '../../components/ui/Alert';
+import Alert, { AlertDescription, InfoBox } from '../../components/ui/Alert';
 import Link from 'next/link';
 
 export default function ComparadorPage() {

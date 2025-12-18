@@ -5,7 +5,7 @@ import ToolLayout from '../../components/Layout/ToolLayout';
 import Card from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 import { FormGroup, Label, Input, Textarea } from '../../components/ui/Form';
-import Alert, { AlertDescription } from '../../components/ui/Alert';
+import Alert, { AlertDescription, InfoBox } from '../../components/ui/Alert';
 
 export default function PartilhaPage() {
     const [formData, setFormData] = useState({
