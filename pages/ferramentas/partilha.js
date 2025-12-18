@@ -1,6 +1,6 @@
 export const dynamic = 'force-dynamic';
 import { useState } from 'react';
-import { FormInput } from '../../components/ui/Form';
+import { FormInput, FormSelect } from '../../components/ui/Form';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import Card from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
