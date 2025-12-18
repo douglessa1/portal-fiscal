@@ -291,7 +291,7 @@ export default function PostDetail() {
                                     required
                                 ></textarea>
                                 <div className="flex justify-end mt-4">
-                                    <FormButton
+                                    <Button
                                         type="submit"
                                         label={submitting ? "Publicando..." : "Publicar Resposta"}
                                         disabled={submitting}

@@ -99,20 +99,20 @@ export default function CalculadoraMargemPage() {
             </div>
 
             <div className="flex gap-4 mb-6">
-                <FormButton
+                <Button
                     onClick={() => setModo('formacao')}
                     variant={modo === 'formacao' ? 'primary' : 'secondary'}
                     className="flex-1 md:flex-none"
                 >
                     Formação de Preço
-                </FormButton>
-                <FormButton
+                </Button>
+                <Button
                     onClick={() => setModo('reverso')}
                     variant={modo === 'reverso' ? 'primary' : 'secondary'}
                     className="flex-1 md:flex-none"
                 >
                     Cálculo Reverso (Descobrir Margem)
-                </FormButton>
+                </Button>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-8">

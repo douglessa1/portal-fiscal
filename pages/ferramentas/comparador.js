@@ -91,9 +91,9 @@ export default function ComparadorPage() {
                     </FormSelect>
                 </div>
 
-                <FormButton onClick={handleCalcular} className="w-full mt-4">
+                <Button onClick={handleCalcular} className="w-full mt-4">
                     Comparar Regimes
-                </FormButton>
+                </Button>
 
                 {resultado && (
                     <div className="space-y-6 pt-6 border-t border-border mt-6">

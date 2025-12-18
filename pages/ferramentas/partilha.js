@@ -113,9 +113,9 @@ export default function PartilhaPage() {
                     />
                 </div>
 
-                <FormButton onClick={handleCalcular} className="w-full mt-4">
+                <Button onClick={handleCalcular} className="w-full mt-4">
                     Calcular Partilha
-                </FormButton>
+                </Button>
 
                 {erro && (
                     <InfoBox type="error" title="Erro" className="mt-4">

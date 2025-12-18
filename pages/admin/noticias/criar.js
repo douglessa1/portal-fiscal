@@ -163,9 +163,9 @@ export default function CriarNoticia() {
                                             />
                                         </div>
 
-                                        <FormButton onClick={handleSubmit} disabled={loading} className="w-full h-12 text-lg flex items-center justify-center gap-2">
+                                        <Button onClick={handleSubmit} disabled={loading} className="w-full h-12 text-lg flex items-center justify-center gap-2">
                                             {loading ? 'Publicando...' : <><Save className="w-5 h-5" /> Publicar Notícia</>}
-                                        </FormButton>
+                                        </Button>
                                     </div>
                                 </Card>
                             </div>

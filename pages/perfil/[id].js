@@ -173,9 +173,9 @@ export default function UserProfile() {
                                 </div>
                                 {isOwner && (
                                     <div className="flex gap-2 self-end mb-1">
-                                        <FormButton variant="outline" className="h-10 px-4 text-sm whitespace-nowrap bg-background hover:bg-muted" onClick={() => setActiveTab('settings')}>
+                                        <Button variant="outline" className="h-10 px-4 text-sm whitespace-nowrap bg-background hover:bg-muted" onClick={() => setActiveTab('settings')}>
                                             <Edit2 className="w-4 h-4 mr-2" /> Editar Perfil
-                                        </FormButton>
+                                        </Button>
                                     </div>
                                 )}
                             </div>
@@ -293,9 +293,9 @@ export default function UserProfile() {
                                             />
                                             <p className="text-xs text-muted-foreground mt-1">Breve descrição que aparecerá no seu perfil da comunidade.</p>
                                         </div>
-                                        <FormButton onClick={handleSaveProfile} disabled={saving}>
+                                        <Button onClick={handleSaveProfile} disabled={saving}>
                                             {saving ? 'Salvando...' : 'Salvar Alterações'}
-                                        </FormButton>
+                                        </Button>
                                     </div>
                                 </Card>
                             </div>
@@ -327,7 +327,7 @@ export default function UserProfile() {
                                         </div>
                                     </div>
 
-                                    <FormButton variant="outline" className="w-full">Gerenciar Assinatura</FormButton>
+                                    <Button variant="outline" className="w-full">Gerenciar Assinatura</Button>
                                 </Card>
                             </div>
                         )}

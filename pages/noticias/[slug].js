@@ -39,7 +39,7 @@ export default function LerNoticia() {
     if (!article) return (
         <div className="min-h-screen bg-background p-20 text-center">
             <h1>Artigo não encontrado</h1>
-            <FormButton onClick={() => router.push('/noticias')}>Voltar</FormButton>
+            <Button onClick={() => router.push('/noticias')}>Voltar</Button>
         </div>
     );
 
