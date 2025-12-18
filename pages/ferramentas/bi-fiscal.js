@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock, UpgradePrompt } from '../../components/Permissions/FeatureLock';
 import { useState } from 'react';
@@ -27,7 +28,7 @@ const MOCK_DATA = {
     ]
 };
 
-export default function BIFiscalPage() {
+function BIFiscalPageContent() {
     const [periodo, setPeriodo] = useState('6m');
     const [loading, setLoading] = useState(false);
     const data = MOCK_DATA;
@@ -148,5 +149,13 @@ export default function BIFiscalPage() {
                 </FeatureLock>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function BIFiscalPage() {
+    return (
+        <AuthGate>
+            <BIFiscalPageContent />
+        </AuthGate>
     );
 }

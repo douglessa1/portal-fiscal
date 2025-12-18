@@ -1,11 +1,12 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock, UpgradePrompt } from '../../components/Permissions/FeatureLock';
 import { useState, useEffect } from 'react';
 import { Landmark, Calculator, Copy, Download, History, Lock } from 'lucide-react';
 import { calculateRetencoesWithMemory, TIPOS_SERVICO } from '../../lib/retencoesHash';
 
-export default function RetencoesPage() {
+function RetencoesPageContent() {
     const [formData, setFormData] = useState({
         valor: '', tipoServico: 'geral', tipoTomador: 'pj', issAliq: '5'
     });
@@ -286,5 +287,13 @@ export default function RetencoesPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function RetencoesPage() {
+    return (
+        <AuthGate>
+            <RetencoesPageContent />
+        </AuthGate>
     );
 }

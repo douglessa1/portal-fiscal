@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock, UpgradePrompt } from '../../components/Permissions/FeatureLock';
 import { useState } from 'react';
@@ -48,7 +49,7 @@ function generateHash(inputs) {
     return `COMP-${hash.padStart(12, '0')}`;
 }
 
-export default function ComparadorRegimesPage() {
+function ComparadorRegimesPageContent() {
     const [formData, setFormData] = useState({
         faturamentoAnual: '',
         tipoAtividade: 'comercio',
@@ -394,5 +395,13 @@ export default function ComparadorRegimesPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function ComparadorRegimesPage() {
+    return (
+        <AuthGate>
+            <ComparadorRegimesPageContent />
+        </AuthGate>
     );
 }

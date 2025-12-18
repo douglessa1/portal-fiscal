@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { FeatureLock, UpgradePrompt } from '../../components/Permissions/FeatureLock';
 import { useState, useEffect } from 'react';
@@ -25,7 +26,7 @@ function generateNCMHash(query) {
     return `NCM-${hash.padStart(12, '0')}`;
 }
 
-export default function NCMFinderPage() {
+function NCMFinderPageContent() {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
     const [selected, setSelected] = useState(null);
@@ -220,5 +221,13 @@ export default function NCMFinderPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function NCMFinderPage() {
+    return (
+        <AuthGate>
+            <NCMFinderPageContent />
+        </AuthGate>
     );
 }

@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import { useState } from 'react';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import Card from '../../components/ui/Card';
@@ -6,7 +7,7 @@ import { Button } from '../../components/ui/Button';
 import { FormGroup, Label, Input } from '../../components/ui/Form';
 import Alert, { AlertDescription } from '../../components/ui/Alert';
 
-export default function MVAAjustadaPage() {
+function MVAAjustadaPageContent() {
     const [formData, setFormData] = useState({
         mvaOriginal: '',
         aliqInterestadual: '',
@@ -139,5 +140,13 @@ export default function MVAAjustadaPage() {
                 </AlertDescription>
             </Alert>
         </ToolLayout>
+    );
+}
+
+export default function MVAAjustadaPage() {
+    return (
+        <AuthGate>
+            <MVAAjustadaPageContent />
+        </AuthGate>
     );
 }

@@ -1,4 +1,5 @@
 export const dynamic = 'force-dynamic';
+import AuthGate from '../../components/Auth/AuthGate';
 import ToolLayout from '../../components/Layout/ToolLayout';
 import { useState } from 'react';
 import { Calendar, Bell, ChevronLeft, ChevronRight, AlertTriangle, CheckCircle, Clock } from 'lucide-react';
@@ -39,7 +40,7 @@ const MESES = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julh
 
 const DIAS_SEMANA = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 
-export default function CalendarioFiscalPage() {
+function CalendarioFiscalPageContent() {
     const [regime, setRegime] = useState('simples');
     const [currentDate, setCurrentDate] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(null);
@@ -181,9 +182,9 @@ export default function CalendarioFiscalPage() {
                                         onClick={() => day && setSelectedDate({ day, month, year })}>
                                         {day && (
                                             <div className={`h-full rounded-lg flex flex-col items-center justify-center relative transition-colors ${isToday(day) ? 'bg-primary text-primary-foreground' :
-                                                    isPast(day) ? 'text-muted-foreground' :
-                                                        dayHasObligations(day) ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200' :
-                                                            'hover:bg-muted'
+                                                isPast(day) ? 'text-muted-foreground' :
+                                                    dayHasObligations(day) ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200' :
+                                                        'hover:bg-muted'
                                                 }`}>
                                                 <span className="text-sm font-medium">{day}</span>
                                                 {dayHasObligations(day) && (
@@ -211,9 +212,9 @@ export default function CalendarioFiscalPage() {
                                         {getObligationsForDay(selectedDate.day).map((ob, idx) => (
                                             <div key={idx} className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg">
                                                 <div className={`w-2 h-2 rounded-full ${ob.tipo === 'federal' ? 'bg-blue-500' :
-                                                        ob.tipo === 'estadual' ? 'bg-green-500' :
-                                                            ob.tipo === 'simples' ? 'bg-orange-500' :
-                                                                'bg-purple-500'
+                                                    ob.tipo === 'estadual' ? 'bg-green-500' :
+                                                        ob.tipo === 'simples' ? 'bg-orange-500' :
+                                                            'bg-purple-500'
                                                     }`} />
                                                 <div className="flex-1">
                                                     <div className="text-sm font-medium text-foreground">{ob.nome}</div>
@@ -238,14 +239,14 @@ export default function CalendarioFiscalPage() {
                             <div className="space-y-2 max-h-[400px] overflow-auto">
                                 {upcomingObligations.slice(0, 10).map((ob, idx) => (
                                     <div key={idx} className={`p-3 rounded-lg border ${ob.daysUntil <= 3 ? 'border-red-200 bg-red-50 dark:bg-red-900/20 dark:border-red-800' :
-                                            ob.daysUntil <= 7 ? 'border-amber-200 bg-amber-50 dark:bg-amber-900/20 dark:border-amber-800' :
-                                                'border-border bg-muted/30'
+                                        ob.daysUntil <= 7 ? 'border-amber-200 bg-amber-50 dark:bg-amber-900/20 dark:border-amber-800' :
+                                            'border-border bg-muted/30'
                                         }`}>
                                         <div className="flex items-center justify-between mb-1">
                                             <span className="text-sm font-medium text-foreground">{ob.nome}</span>
                                             <span className={`text-xs px-1.5 py-0.5 rounded ${ob.daysUntil === 0 ? 'bg-red-600 text-white' :
-                                                    ob.daysUntil <= 3 ? 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200' :
-                                                        'bg-muted text-muted-foreground'
+                                                ob.daysUntil <= 3 ? 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200' :
+                                                    'bg-muted text-muted-foreground'
                                                 }`}>
                                                 {ob.daysUntil === 0 ? 'Hoje' : ob.daysUntil === 1 ? 'Amanhã' : `${ob.daysUntil} dias`}
                                             </span>
@@ -276,5 +277,13 @@ export default function CalendarioFiscalPage() {
                 </div>
             </div>
         </ToolLayout>
+    );
+}
+
+export default function CalendarioFiscalPage() {
+    return (
+        <AuthGate>
+            <CalendarioFiscalPageContent />
+        </AuthGate>
     );
 }
