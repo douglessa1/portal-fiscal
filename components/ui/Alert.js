@@ -50,4 +50,7 @@ export function AlertDescription({ children, className = '' }) {
     );
 }
 
+// Alias para compatibilidade
+export { Alert as InfoBox };
+
 export default Alert;
