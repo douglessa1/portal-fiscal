@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { FormButton, Card, InfoBox } from '../ui/FormComponents';
+import { Button } from '../ui/Button';
+import { Card } from '../ui/Card';
+import { InfoBox } from '../ui/Alert';
 
 /**
  * Componente: Upload e visualização de XML
@@ -119,13 +121,13 @@ export default function XmlUploader() {
             )}
 
             {file && !result && (
-                <FormButton
+                <Button
                     onClick={handleUpload}
                     disabled={loading}
                     className="w-full"
                 >
                     {loading ? 'Processando...' : 'Processar XML'}
-                </FormButton>
+                </Button>
             )}
 
             {/* Result Section */}
@@ -200,13 +202,13 @@ export default function XmlUploader() {
 
                         {/* Botões de Ação */}
                         <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-border">
-                            <FormButton
+                            <Button
                                 onClick={downloadJson}
                                 className="flex-1"
                             >
                                 ⬇ Baixar JSON
-                            </FormButton>
-                            <FormButton
+                            </Button>
+                            <Button
                                 onClick={() => {
                                     setResult(null);
                                     setFile(null);
@@ -215,7 +217,7 @@ export default function XmlUploader() {
                                 className="flex-1"
                             >
                                 Processar Outro XML
-                            </FormButton>
+                            </Button>
                         </div>
 
                         {/* JSON Completo (Colapsável) */}

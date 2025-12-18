@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { FormButton, Card, InfoBox } from '../ui/FormComponents';
+import { Button } from '../ui/Button';
+import { Card } from '../ui/Card';
+import { InfoBox } from '../ui/Alert';
 
 /**
  * NFeValidatorForm - Formulário de validação de NFe (REFATORADO)
@@ -123,13 +125,13 @@ export default function NFeValidatorForm() {
 
             {/* Validate Button */}
             {file && !loading && !resultado && (
-                <FormButton
+                <Button
                     onClick={handleValidate}
                     className="w-full"
                     variant="primary"
                 >
                     Validar XML
-                </FormButton>
+                </Button>
             )}
 
             {/* Loading State */}
@@ -223,7 +225,7 @@ export default function NFeValidatorForm() {
                     )}
 
                     {/* New Validation Button */}
-                    <FormButton
+                    <Button
                         onClick={() => {
                             setFile(null);
                             setResultado(null);
@@ -233,7 +235,7 @@ export default function NFeValidatorForm() {
                         variant="secondary"
                     >
                         Validar Outro XML
-                    </FormButton>
+                    </Button>
                 </div>
             )}
         </div>

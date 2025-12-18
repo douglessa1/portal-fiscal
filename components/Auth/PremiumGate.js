@@ -1,7 +1,8 @@
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { Lock } from 'lucide-react';
-import { Card, FormButton } from '../ui/FormComponents';
+import { Card } from '../ui/Card';
+import { Button } from '../ui/Button';
 
 export default function PremiumGate({ children, featureName = 'Recurso Premium', fallback }) {
     const { data: session } = useSession();
@@ -27,9 +28,9 @@ export default function PremiumGate({ children, featureName = 'Recurso Premium',
                     Desbloqueie acesso ilimitado a todas as ferramentas fiscais.
                 </p>
                 <Link href="/planos">
-                    <FormButton className="mt-4 px-8">
+                    <Button className="mt-4 px-8">
                         Fazer Upgrade Agora
-                    </FormButton>
+                    </Button>
                 </Link>
             </div>
         </Card>

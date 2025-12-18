@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { extrairDadosDIFAL } from '../../lib/difalIntegrado';
-import { FormInput, FormSelect, FormButton, Card, InfoBox } from '../ui/FormComponents';
+import { FormInput } from '../ui/Form';
+import { FormSelect } from '../ui/Form';
+import { Button } from '../ui/Button';
+import { Card } from '../ui/Card';
+import { InfoBox } from '../ui/Alert';
 
 /**
  * Componente: Formulário da Calculadora DIFAL (REFATORADO)
@@ -294,7 +298,7 @@ export default function DIFALForm({ onCalculate, onSaveHistory }) {
                             </tfoot>
                         </table>
                     </div>
-                    <FormButton
+                    <Button
                         variant="primary"
                         className="mt-3"
                         onClick={() => {
@@ -303,7 +307,7 @@ export default function DIFALForm({ onCalculate, onSaveHistory }) {
                         }}
                     >
                         Usar valor dos itens selecionados (R$ {calcularValorItensSelecionados().toFixed(2)})
-                    </FormButton>
+                    </Button>
                 </InfoBox>
             )}
 
@@ -412,9 +416,9 @@ export default function DIFALForm({ onCalculate, onSaveHistory }) {
                     </InfoBox>
                 )}
 
-                <FormButton type="submit" variant="primary" className="w-full" disabled={loading}>
+                <Button type="submit" variant="primary" className="w-full" disabled={loading}>
                     {loading ? 'Calculando...' : 'Calcular DIFAL'}
-                </FormButton>
+                </Button>
             </form>
 
             {/* Resultado */}

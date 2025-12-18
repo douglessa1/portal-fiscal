@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { FormButton, Card, InfoBox } from '../ui/FormComponents';
+import { Button } from '../ui/Button';
+import { Card } from '../ui/Card';
+import { InfoBox } from '../ui/Alert';
 
 export default function DANFEGenerator() {
     const [files, setFiles] = useState([]);
@@ -186,13 +188,13 @@ export default function DANFEGenerator() {
                         <h3 className="text-lg font-bold text-foreground">
                             Arquivos Carregados ({files.length})
                         </h3>
-                        <FormButton
+                        <Button
                             onClick={handleLimpar}
                             variant="destructive"
                             className="h-8 px-3 text-sm py-0"
                         >
                             Limpar Todos
-                        </FormButton>
+                        </Button>
                     </div>
 
                     <div className="space-y-2 max-h-64 overflow-y-auto pr-1">
@@ -204,13 +206,13 @@ export default function DANFEGenerator() {
                                         {(file.size / 1024).toFixed(1)} KB
                                     </div>
                                 </div>
-                                <FormButton
+                                <Button
                                     onClick={() => handleGerarUnico(idx)}
                                     disabled={loading}
                                     className="h-8 px-3 text-xs"
                                 >
                                     {loading ? 'Gerando...' : 'Gerar PDF'}
-                                </FormButton>
+                                </Button>
                             </div>
                         ))}
                     </div>
@@ -218,13 +220,13 @@ export default function DANFEGenerator() {
                     {/* Batch Actions */}
                     {files.length > 1 && (
                         <div className="mt-4 pt-4 border-t border-border">
-                            <FormButton
+                            <Button
                                 onClick={handleGerarLote}
                                 disabled={loading || processando}
                                 className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
                             >
                                 Gerar Todos os DANFEs ({files.length})
-                            </FormButton>
+                            </Button>
                         </div>
                     )}
                 </Card>
