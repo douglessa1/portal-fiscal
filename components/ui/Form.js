@@ -81,6 +81,28 @@ export function ErrorMessage({ children, className = '' }) {
     );
 }
 
+export function FormInput({ label, error, required, className = '', ...props }) {
+    return (
+        <FormGroup className={className}>
+            {label && <Label required={required}>{label}</Label>}
+            <Input error={!!error} {...props} />
+            {error && <ErrorMessage>{error}</ErrorMessage>}
+        </FormGroup>
+    );
+}
+
+export function FormSelect({ label, error, required, className = '', children, ...props }) {
+    return (
+        <FormGroup className={className}>
+            {label && <Label required={required}>{label}</Label>}
+            <Select error={!!error} {...props}>
+                {children}
+            </Select>
+            {error && <ErrorMessage>{error}</ErrorMessage>}
+        </FormGroup>
+    );
+}
+
 export function FormGroup({ children, className = '' }) {
     return (
         <div className={`space-y-2 ${className}`}>
@@ -95,5 +117,7 @@ export default {
     Select,
     Textarea,
     ErrorMessage,
-    FormGroup
+    FormGroup,
+    FormInput,
+    FormSelect
 };

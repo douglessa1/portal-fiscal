@@ -5,6 +5,7 @@ import { Button } from '../../components/ui/Button';
 import { FormGroup, Label, Input, Textarea } from '../../components/ui/Form';
 import Alert, { AlertDescription } from '../../components/ui/Alert';
 import { useState, useEffect } from 'react';
+import { FormInput } from '../../components/ui/Form';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import { User, Settings, CreditCard, MessageSquare, ShieldCheck, Mail, Calendar, Edit2, LogOut, CheckCircle, Crown } from 'lucide-react';
